@@ -11,6 +11,6 @@ from flask import request
 
 __author__ = """Italo José G. de Oliveira"""
 __email__ = 'italo.i@live.com'
-__version__ = '0.1.7'
+__version__ = '0.2.2'
  
  
