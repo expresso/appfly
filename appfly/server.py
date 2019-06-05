@@ -1,4 +1,5 @@
 from jsonmerge import merge
+from gevent.pywsgi import WSGIServer
 
 class Server():
     def __init__(self, app, socketio=None):
@@ -16,10 +17,13 @@ class Server():
     def start(self, options=None):
         if options:
             self.__config = merge(self.__config, options)
-
-        if self.__socketio:
-            self.__socketio.run(self.__app, debug=self.__config["debug"], port=self.__config["server"]["port"], host=self.__config["server"]["ip"])
-            print('\n[socketio] - API is running...')
+        if self.__config["debug"]:
+            if self.__socketio:
+                self.__socketio.run(self.__app, debug=self.__config["debug"], port=self.__config["server"]["port"], host=self.__config["server"]["ip"])
+                print('\n[socketio] - API is running...')
+            else:
+                self.__app.run(debug=self.__config["debug"], port=self.__config["server"]["port"], host=self.__config["server"]["ip"])
+                print('\n[app] - API is running...')
         else:
-            self.__app.run(debug=self.__config["debug"], port=self.__config["server"]["port"], host=self.__config["server"]["ip"])
-            print('\n[app] - API is running...')
+            http_server = WSGIServer(('', self.__config["server"]["port"]), self.__app)
+            http_server.serve_forever()

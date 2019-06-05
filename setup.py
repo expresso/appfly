@@ -12,8 +12,9 @@ requirements = [
     'Flask==1.0.2',
     'flask_cors==3.0.6', 
     'Flask-SocketIO==3.0.2',
-    'jsonmerge==1.5.2'
-    'deeptracepy==0.1.0'
+    'jsonmerge==1.5.2',
+    'deeptracepy==0.1.0',
+    'gevent==1.4.0'
 ]
 
 setup(
@@ -37,6 +38,6 @@ setup(
     name='appfly',
     packages=find_packages(),
     url='https://github.com/italojs/appfly',
-    version='2.1.0',
+    version='2.1.2',
     zip_safe=False,
 )
