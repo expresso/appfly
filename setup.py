@@ -10,7 +10,7 @@ with open('README.md') as readme_file:
 
 requirements = [
     'Flask==1.0.2',
-    'flask_cors==3.0.6', 
+    'flask_cors==3.0.9', 
     'Flask-SocketIO==3.0.2',
     'jsonmerge==1.5.2',
     'deeptracepy==0.1.0',
